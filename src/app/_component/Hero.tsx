@@ -8,11 +8,11 @@ function Hero() {
   const { state } = useTextContext();
 
   return (
-    <div className="text-center p-8 bg-gray-100 rounded-lg shadow-md">
-      <h1 className="text-2xl font-bold mb-4">{state}</h1>
+    <div className="bg-gradient-to-br from-blue-50 to-blue-100 text-center p-10 rounded-2xl shadow-lg">
+      <h1 className="text-3xl font-extrabold text-blue-900 mb-6">{state}</h1>
       <Link
         href="/product"
-        className="text-blue-600 underline hover:text-blue-800 transition"
+        className="inline-block bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-300 shadow-md"
       >
         Go to product
       </Link>

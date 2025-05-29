@@ -10,6 +10,7 @@ function LoginForm() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+
   async function loginUser(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     try {
@@ -25,8 +26,7 @@ function LoginForm() {
       setUsername("");
     } catch (e) {
       if (typeof e === "string") {
-        e.toUpperCase();
-        setError(e);
+        setError(e.toUpperCase());
       } else if (e instanceof Error) {
         setError(e.message);
       }
@@ -34,43 +34,51 @@ function LoginForm() {
       setLoading(false);
     }
   }
+
   return (
     <div>
-      {loading && <div>Loading...</div>}
-      {error && <span className="text-red-500">{error}</span>}
-      <form onSubmit={loginUser} className="max-w-sm mx-auto">
-        <div className="mb-5">
-          <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-            Your email
+      {loading && (
+        <div className="text-blue-700 mb-3 text-sm font-medium text-center">
+          Loading...
+        </div>
+      )}
+      {error && (
+        <div className="text-red-500 mb-3 text-sm font-medium text-center">
+          {error}
+        </div>
+      )}
+
+      <form onSubmit={loginUser} className="space-y-5">
+        <div>
+          <label className="block text-sm font-medium text-blue-900 mb-1">
+            Email
           </label>
           <input
-            onChange={(e) => {
-              setUsername(e.target.value);
-            }}
-            value={username}
             type="text"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            placeholder="Enter your email"
+            className="w-full px-4 py-2 border border-blue-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-blue-900"
           />
         </div>
-        <div className="mb-5">
-          <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-            Your password
+        <div>
+          <label className="block text-sm font-medium text-blue-900 mb-1">
+            Password
           </label>
           <input
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-            value={password}
             type="password"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Enter your password"
+            className="w-full px-4 py-2 border border-blue-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-blue-900"
           />
         </div>
 
         <button
           type="submit"
-          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          className="w-full bg-blue-600 text-white py-2 rounded-lg font-medium hover:bg-blue-700 transition"
         >
-          Submit
+          Login
         </button>
       </form>
     </div>

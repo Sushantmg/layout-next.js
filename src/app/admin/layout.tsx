@@ -9,9 +9,9 @@ async function layout({ children }: { children: React.ReactNode }) {
     return redirect("/login");
   }
   return (
-    <div className="flex">
+    <div className="flex min-h-screen bg-gray-50">
       <Sidebar />
-      {children}
+      <main className="flex-1 p-6 overflow-auto">{children}</main>
     </div>
   );
 }

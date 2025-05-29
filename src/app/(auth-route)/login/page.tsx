@@ -8,9 +8,12 @@ async function page() {
   if (cookie) {
     return redirect("/admin");
   }
+
   return (
-    <div>
-      <LoginForm />
+    <div className="min-h-screen flex items-center justify-center bg-blue-50 px-4">
+      <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-md">
+        <LoginForm />
+      </div>
     </div>
   );
 }
